@@ -50,7 +50,6 @@ type Dev struct {
 	DeviceHardwarePercent float64 `json:"Device Hardware%"`
 	DeviceRejectedPercent float64 `json:"Device Rejected%"`
 	DeviceElapsed         int64   `json:"Device Elapsed"`
-	//FansSpeed      int64   `json:"Fans Speed"`
 }
 
 type DevsResponse struct {
