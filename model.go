@@ -15,33 +15,33 @@ type MapInt64 map[string]int64
   ],
 */
 type Status struct {
-	Code        int
-	Description string
+	Code        int    `json:"Code"`
+	Description string `json:"Description"`
 	Status      string `json:"STATUS"`
-	When        int64
+	When        int64  `json:"When"`
 }
 
 type DevCommon struct {
-	Name string
-	ASC  int
-	ID   int
+	Name string `json:"Name"`
+	ASC  int    `json:"ASC"`
+	ID   int    `json:"ID"`
 }
 
 type Dev struct {
 	DevCommon
-	Enabled               string
-	Status                string
-	Temperature           float64
+	Enabled               string  `json:"Enabled"`
+	Status                string  `json:"Status"`
+	Temperature           float64 `json:"Temperature"`
 	MHSav                 float64 `json:"MHS av"`
 	MHS5s                 float64 `json:"MHS 5s"`
 	MHS1m                 float64 `json:"MHS 1m"`
 	MHS5m                 float64 `json:"MHS 5m"`
 	MHS15m                float64 `json:"MHS 15m"`
-	Accepted              int64
-	Rejected              int64
-	HardwareErrors        int64 `json:"Hardware Errors"`
-	Utility               float64
-	TotalMH               int64
+	Accepted              int64   `json:"Accepted"`
+	Rejected              int64   `json:"Rejected"`
+	HardwareErrors        int64   `json:"Hardware Errors"`
+	Utility               float64 `json:"Utility"`
+	TotalMH               int64   `json:"TotalMH"`
 	Diff1Work             int64   `json:"Diff1 Work"`
 	DifficultyAccepted    float64 `json:"Difficulty Accepted"`
 	DifficultyRejected    float64 `json:"Difficulty Rejected"`
@@ -80,20 +80,6 @@ type ChipStatResponse struct {
 	Id        int64    `json:"id"`
 	ChipStats []ChipStat
 }
-
-//Enabled        string
-//Status         string
-//MHSav          float64 `json:"MHS av"`
-//MHS5s          float64 `json:"MHS 5s"`
-//MHS1m          float64 `json:"MHS 1m"`
-//MHS5m          float64 `json:"MHS 5m"`
-//MHS15m         float64 `json:"MHS 15m"`
-//Accepted       int64
-//Rejected       int64
-//HardwareErrors int64   `json:"Hardware Errors"`
-//DeviceElapsed  int64   `json:"Device Elapsed"`
-//FansSpeed      int64   `json:"Fans Speed"`
-//Temperature    float64 `json:"temperature"`
 
 //type Pool struct {
 //	Pool				int		`json:"POOL"`
@@ -226,7 +212,7 @@ type SummaryResponse struct {
    "Last getwork": 1517965137
 */
 type Summary struct {
-	Elapsed               int64
+	Elapsed               int64   `json:"Elapsed"`
 	MHSav                 float64 `json:"MHS av"`
 	MHS5s                 float64 `json:"MHS 5s"`
 	MHS1m                 float64 `json:"MHS 1m"`
@@ -237,13 +223,13 @@ type Summary struct {
 	Temper3               float64 `json:"temper3"`
 	Temper4               float64 `json:"temper4"`
 	FoundBlocks           int64   `json:"Found Blocks"`
-	Getworks              int64
-	Accepted              int64
-	Rejected              int64
-	HardwareErrors        int64 `json:"Hardware Errors"`
-	Utility               float64
-	Discarded             int64
-	Stale                 int64
+	Getworks              int64   `json:"Getworks"`
+	Accepted              int64   `json:"Accepted"`
+	Rejected              int64   `json:"Rejected"`
+	HardwareErrors        int64   `json:"Hardware Errors"`
+	Utility               float64 `json:"Utility"`
+	Discarded             int64   `json:"Discarded"`
+	Stale                 int64   `json:"Stale"`
 	GetFailures           int64   `json:"Get Failures"`
 	LocalWork             int64   `json:"Local Work"`
 	RemoteFailures        int64   `json:"Remote Failures"`
