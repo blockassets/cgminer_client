@@ -10,22 +10,7 @@ install:
   - dep ensure
 stages:
   - test
-  - name: deploy
-    if: branch = master
 jobs:
   include:
   - stage: test
     script: make test
-  - stage: deploy
-    script: make arm
-    before_deploy:
-      - git config --local user.name "lookfirst"
-      - git config --local user.email "latchkey@gmail.com"
-      - git tag "$(date '+%Y%m%d-%H%M%S')-$(git log --format=%h -1)-arm"
-    deploy:
-      provider: releases
-      api_key:
-        secure: YefyKiC0Jl5lMGgQugfwnfJOC+O+sn5RPwEAp47gtgsQE1PIlkdc0eLEJFgNLU0YNuDD5asJijW12XpY6j3ff6FMtAhggxvJSZJRwSZkcbZLW+3sSU1hqJme5Qg/68zDZxaMT0H6cv+i9Nj72y+U4RiBO9KCI02baNn4oq6nDLEiafNQNY3+2sl4eHwsN/pELgYrZYJtBDyrQDyVS7QuVAg7z4DpcQBSDVzMmAfvsbIU10JGlvVceXLqhGRKQXlPWnlz8Ss7yveD922ZBP4Oq6isRqIhkJ+UIsA0rbDLIWecplT4LTy9isALalurhlALuLxSlm95N4QBnftm7JwKVh0932wQKRW2HIHyvwd08TK+8chlseb+ggYY3R/eioNCsidfqRZ3508VQKIso0fOkS8t0yPrWwXzfFKKSCOs3UAyoxQs6sDVfD20Wp6h+tz1WLQ9OhfgZW09XdYcBKtlXIEprOhZdGKEJuHSAMSqFmWMSXLtKYSuC0ltvWJUWk+OQsWhlkdANNdb+wsrrRiE0p457jg4aG7L56rlp1soad/qBoB/HGuolT+xEfL8QZhb3rGaQ5EV4hNO/EyO93PLlADfdW/563Al4GZt4uiW2TDdYjCnRMLKtjywzoaOzceLipvOD1tWFeEqFhViJR6osRkeCwH3yeGnd6OGbXBi2vk=
-      skip_cleanup: true
-      on:
-        repo: blockassets/cgminer_client
