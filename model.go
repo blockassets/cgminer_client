@@ -22,7 +22,7 @@ type Status struct {
 }
 
 type DevCommon struct {
-	Name string `json:"Name"`
+	Name string `json:"Name,omit"` // omit is special for prometheus_helper library to exclude it
 	ASC  int    `json:"ASC"`
 	ID   int    `json:"ID"`
 }
