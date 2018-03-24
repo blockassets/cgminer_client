@@ -16,21 +16,29 @@ var (
 	version = ""
 )
 
-type Client struct {
+type Client interface {
+	Devs() (*[]Dev, error)
+	Quit() error
+	Restart() error
+	Summary() (*Summary, error)
+	ChipStat() (*[]ChipStat, error)
+}
+
+type CgClient struct {
 	server  string
 	timeout time.Duration
 }
 
 // New returns a Client pointer, which is used to communicate with a running
 // cgminer instance. Note that New does not attempt to connect to the miner.
-func New(hostname string, port int64, timeout time.Duration) *Client {
-	miner := &Client{}
+func New(hostname string, port int64, timeout time.Duration) Client {
+	miner := &CgClient{}
 	miner.server = fmt.Sprintf("%s:%d", hostname, port)
 	miner.timeout = time.Second * timeout
 	return miner
 }
 
-func (miner *Client) runCommand(command, argument string) (string, error) {
+func (miner *CgClient) runCommand(command, argument string) (string, error) {
 	conn, err := net.DialTimeout("tcp", miner.server, miner.timeout)
 	if err != nil {
 		return "", err
@@ -64,7 +72,7 @@ func (miner *Client) runCommand(command, argument string) (string, error) {
 }
 
 // Devs returns basic information on the miner.
-func (miner *Client) Devs() (*[]Dev, error) {
+func (miner *CgClient) Devs() (*[]Dev, error) {
 	response, err := miner.runCommand("devs", "")
 	if err != nil {
 		return nil, err
@@ -85,7 +93,7 @@ func processDevs(response string) (*DevsResponse, error) {
 	return devsResponse, err
 }
 
-func (miner *Client) ChipStat() (*[]ChipStat, error) {
+func (miner *CgClient) ChipStat() (*[]ChipStat, error) {
 	response, err := miner.runCommand("chipstat", "")
 	if err != nil {
 		return nil, err
@@ -130,7 +138,7 @@ func processChipStat(response string) (*ChipStatResponse, error) {
 }
 
 // Summary returns basic information on the miner.
-func (miner *Client) Summary() (*Summary, error) {
+func (miner *CgClient) Summary() (*Summary, error) {
 	response, err := miner.runCommand("summary", "")
 	if err != nil {
 		return nil, err
@@ -155,13 +163,13 @@ func processSummary(response string) (*SummaryResponse, error) {
 	return summaryResponse, err
 }
 
-func (miner *Client) Restart() error {
+func (miner *CgClient) Restart() error {
 	_, err := miner.runCommand("restart", "")
 	return err
 }
 
 //
-func (miner *Client) Quit() error {
+func (miner *CgClient) Quit() error {
 	_, err := miner.runCommand("quit", "")
 	return err
 }
