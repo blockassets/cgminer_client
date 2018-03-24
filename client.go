@@ -16,10 +16,6 @@ var (
 	version = ""
 )
 
-// Why isn't this part of the stdlib?!
-// Oh right: https://github.com/json-iterator/go/issues/231
-var json = jsoniter.ConfigDefault
-
 type Client struct {
 	server  string
 	timeout time.Duration
@@ -54,7 +50,7 @@ func (miner *Client) runCommand(command, argument string) (string, error) {
 		request.Parameter = argument
 	}
 
-	requestBody, err := json.Marshal(request)
+	requestBody, err := jsoniter.Marshal(request)
 	if err != nil {
 		return "", err
 	}
@@ -81,7 +77,7 @@ func (miner *Client) Devs() (*[]Dev, error) {
 /* Makes testing easier */
 func processDevs(response string) (*DevsResponse, error) {
 	devsResponse := &DevsResponse{}
-	err := json.Unmarshal([]byte(response), devsResponse)
+	err := jsoniter.Unmarshal([]byte(response), devsResponse)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +98,7 @@ func (miner *Client) ChipStat() (*[]ChipStat, error) {
 /* Makes testing easier */
 func processChipStat(response string) (*ChipStatResponse, error) {
 	chipStatResponse := &ChipStatResponse{}
-	err := json.Unmarshal([]byte(response), chipStatResponse)
+	err := jsoniter.Unmarshal([]byte(response), chipStatResponse)
 	if err != nil {
 		return nil, err
 	}
@@ -147,7 +143,7 @@ func (miner *Client) Summary() (*Summary, error) {
 /* Makes testing easier */
 func processSummary(response string) (*SummaryResponse, error) {
 	summaryResponse := &SummaryResponse{}
-	err := json.Unmarshal([]byte(response), summaryResponse)
+	err := jsoniter.Unmarshal([]byte(response), summaryResponse)
 	if err != nil {
 		return nil, err
 	}
@@ -178,7 +174,7 @@ func (miner *Client) Quit() error {
 //	}
 //
 //	var poolsResponse poolsResponse
-//	err = json.Unmarshal([]byte(result), &poolsResponse)
+//	err = jsoniter.Unmarshal([]byte(result), &poolsResponse)
 //	if err != nil {
 //		return nil, err
 //	}
@@ -199,7 +195,7 @@ func (miner *Client) Quit() error {
 //	}
 //
 //	var addPoolResponse addPoolResponse
-//	err = json.Unmarshal([]byte(result), &addPoolResponse)
+//	err = jsoniter.Unmarshal([]byte(result), &addPoolResponse)
 //	if err != nil {
 //		// If there an error here, it's possible that the pool was actually added
 //		return err
