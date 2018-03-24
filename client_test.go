@@ -13,7 +13,7 @@ func TestProcessChipStat(t *testing.T) {
 	}
 	csLen := len(actualResult.ChipStats[0].Accept)
 	if csLen != 36 {
-		t.Fatalf("Length is not 36, it is %s", csLen)
+		t.Fatalf("Length is not 36, it is %v", csLen)
 	}
 
 	// 2.90 bw version
@@ -24,7 +24,7 @@ func TestProcessChipStat(t *testing.T) {
 	}
 	csLen = len(actualResult.ChipStats[0].Accept)
 	if csLen != 36 {
-		t.Fatalf("Length is not 36, it is %s", csLen)
+		t.Fatalf("Length is not 36, it is %v", csLen)
 	}
 }
 
@@ -38,14 +38,14 @@ func TestProcessDevs(t *testing.T) {
 
 	csLen := len(actualResult.Devs)
 	if csLen != 4 {
-		t.Fatalf("Length is not 4, it is %s", csLen)
+		t.Fatalf("Length is not 4, it is %v", csLen)
 	}
 
 	// Make sure the temperature vs. Temperature works ok
 	for _, dev := range actualResult.Devs {
 		tmp := dev.Temperature
 		if tmp == 0 {
-			t.Fatalf("Temp should not be zero: %s", tmp)
+			t.Fatalf("Temp should not be zero: %v", tmp)
 		}
 	}
 
@@ -57,7 +57,7 @@ func TestProcessDevs(t *testing.T) {
 	}
 	csLen = len(actualResult.Devs)
 	if csLen != 4 {
-		t.Fatalf("Length is not 4, it is %s", csLen)
+		t.Fatalf("Length is not 4, it is %v", csLen)
 	}
 }
 
@@ -71,7 +71,7 @@ func TestProcessSummary(t *testing.T) {
 
 	elapsed := actualResult.Summary[0].Elapsed
 	if elapsed != 48417 {
-		t.Fatalf("Elapsed is not 48417, it is %s", elapsed)
+		t.Fatalf("Elapsed is not 48417, it is %v", elapsed)
 	}
 
 	// 2.90 bw
