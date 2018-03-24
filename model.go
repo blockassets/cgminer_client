@@ -245,4 +245,13 @@ type Summary struct {
 	PoolRejectedPercent   float64 `json:"Pool Rejected%"`
 	PoolStalePercent      float64 `json:"Pool Stale%"`
 	LastGetwork           int64   `json:"Last getwork"`
+	InputVolt1            float64 `json:"inputVolt1"`
+	InputVolt2            float64 `json:"inputVolt2"`
+	InputVolt3            float64 `json:"inputVolt3"`
+	OutputVolt1           float64 `json:"outputVolt1"`
+	OutputVolt2           float64 `json:"outputVolt2"`
+	OutputVolt3           float64 `json:"outputVolt3"`
+	InputCurrent1         float64 `json:"inputCurrent1"`
+	InputCurrent2         float64 `json:"inputCurrent2"`
+	InputCurrent3         float64 `json:"inputCurrent3"`
 }

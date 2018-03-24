@@ -115,7 +115,7 @@ func processChipStat(response string) (*ChipStatResponse, error) {
 		// unknown set of properties on an object. In this, case it is all
 		// the 1_accept properties. Map the known properties by hand, delete
 		// them and then map all the accept properties.
-		chipStat := chipStatResponse.ChipStats[i]
+		chipStat := &chipStatResponse.ChipStats[i]
 		chipStat.ASC = int(data["ASC"].(float64))
 		chipStat.Name = data["Name"].(string)
 		chipStat.ID = int(data["ID"].(float64))
