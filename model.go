@@ -31,7 +31,7 @@ type Dev struct {
 	DevCommon
 	Enabled               string  `json:"Enabled"`
 	Status                string  `json:"Status"`
-	Temperature           float64 `json:"Temperature"`
+	Temperature           float64 `json:"temperature"`
 	MHSav                 float64 `json:"MHS av"`
 	MHS5s                 float64 `json:"MHS 5s"`
 	MHS1m                 float64 `json:"MHS 1m"`
